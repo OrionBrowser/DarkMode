@@ -9,7 +9,7 @@ iframe, img, image, video, [style*="background-image"] {
 } 
 `;
   
-id=“orion-browser-dark-theme";
+id="orion-browser-dark-theme";
 ee = document.getElementById(id);
 if (null != ee) ee.parentNode.removeChild(ee);
 else {
