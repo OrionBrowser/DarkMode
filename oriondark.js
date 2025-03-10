@@ -1,4 +1,4 @@
-var odmcss = `
+const odmcss = `
 :root {
     filter: invert(90%) hue-rotate(180deg) brightness(100%) contrast(100%);
     background: #fff;
@@ -9,14 +9,21 @@ iframe, img, image, video, [style*="background-image"] {
 } 
 `;
   
-id="orion-browser-dark-theme";
-ee = document.getElementById(id);
-if (null != ee) ee.parentNode.removeChild(ee);
-else {
+id = "orion-browser-dark-theme";
+element = document.getElementById(id);
+
+if (null != element) {
+  element.parentNode.removeChild(element);
+} else {
   style = document.createElement('style');
   style.type = "text/css";
   style.id = id;
-  if (style.styleSheet) style.styleSheet.cssText = odmcss;
-  else style.appendChild(document.createTextNode(odmcss));
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = odmcss;
+  } else {
+    style.appendChild(document.createTextNode(odmcss));
+  }
+
   document.head.appendChild(style);
 }
