@@ -1,4 +1,4 @@
-const odmcss = `
+var odmcss = `
 :root {
     filter: invert(90%) hue-rotate(180deg) brightness(100%) contrast(100%);
     background: #fff;
