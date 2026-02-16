@@ -1,29 +1,45 @@
 var odmcss = `
 :root {
     filter: invert(90%) hue-rotate(180deg) brightness(100%) contrast(100%);
+    color-scheme: dark;
     background: #fff;
-} 
+    transition: filter 0.2s ease;
+}
 
-iframe, img, image, video, [style*="background-image"] { 
+iframe, img, image, video, canvas, svg image,
+picture, [style*="background-image"],
+[style*="background:"] {
     filter: invert() hue-rotate(180deg) brightness(105%) contrast(105%);
-} 
+}
+
+iframe img, iframe video, iframe canvas {
+    filter: none;
+}
+
+::selection {
+    background: #338fff;
+    color: #fff;
+}
+
+input, textarea, select, button {
+    color-scheme: dark;
+}
 `;
-  
-id = "orion-browser-dark-theme";
-element = document.getElementById(id);
 
-if (null != element) {
-  element.parentNode.removeChild(element);
+const id = "orion-browser-dark-theme";
+const existing = document.getElementById(id);
+
+if (existing) {
+    existing.remove();
 } else {
-  style = document.createElement('style');
-  style.type = "text/css";
-  style.id = id;
+    const meta = document.createElement("meta");
+    meta.name = "color-scheme";
+    meta.content = "dark";
+    meta.id = id + "-meta";
+    document.head.appendChild(meta);
 
-  if (style.styleSheet) {
-    style.styleSheet.cssText = odmcss;
-  } else {
-    style.appendChild(document.createTextNode(odmcss));
-  }
-
-  document.head.appendChild(style);
+    const style = document.createElement("style");
+    style.id = id;
+    style.textContent = odmcss;
+    document.head.appendChild(style);
 }
